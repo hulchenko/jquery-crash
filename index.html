@@ -12,10 +12,31 @@
       $('<div />')
         .css({
           margin: '20px auto',
-          width: 200,
-          height: 200,
+          width: '100px',
+          height: '100px',
           borderRadius: '50%',
           backgroundColor: 'red',
+          transition: '0.3s transform ease-in',
+        })
+        .hover(
+          function () {
+            $(this).css('transform', 'scale(1.1)');
+          },
+          function () {
+            $(this).css('transform', 'scale(1)');
+          }
+        )
+        .click(function () {
+          const $clone = $(this).clone(); //objects created within jquery usually start with $ sign, to indicate it was created withing jquery for code readability.
+
+          $clone.css({
+            position: 'relative',
+            top: '2px',
+            backgroundColor: 'blue',
+          });
+
+          $clone.click(() => $clone.fadeOut());
+          $(document.body).append($clone);
         })
         .appendTo($(document.body));
     </script>
